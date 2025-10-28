@@ -3,21 +3,16 @@ FROM node:20-alpine AS build
 
 WORKDIR /app
 
-# Copy package files and install dependencies
 COPY package*.json ./
 RUN npm install
 
-# Copy project source and (optional) build it
 COPY . .
-RUN npm run build -- --configuration development
+RUN npm run build --prod
 
-# Stage 2 — Serve with nginx (lightweight & simple)
+# Stage 2 — Serve with nginx
 FROM nginx:alpine
 
-# Copy built Angular files to nginx default folder
-COPY --from=build /app/dist/my-cicd-test /usr/share/nginx/html
+COPY --from=build /app/dist/my-cicd-test/browser /usr/share/nginx/html
 
-# Expose default web port
 EXPOSE 80
-
 CMD ["nginx", "-g", "daemon off;"]

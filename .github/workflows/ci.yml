@@ -19,7 +19,7 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run build -- --configuration production
+      - run: npm run build . -t my-cicd-test-web
 
       - name: Build and Push Docker Image
         uses: mr-smithers-excellent/docker-build-push@v6
