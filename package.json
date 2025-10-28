@@ -1,15 +1,16 @@
 {
   "name": "my-cicd-test",
   "version": "0.0.0",
+  "private": true,
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:my-cicd-test": "node dist/my-cicd-test/server/server.mjs"
+    "build:ssr": "ng build --configuration production && ng run my-cicd-test:server:production",
+    "serve:ssr": "node dist/my-cicd-test/server/main.js"
   },
-  "private": true,
   "dependencies": {
     "@angular/common": "^19.2.0",
     "@angular/compiler": "^19.2.0",
