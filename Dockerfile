@@ -18,6 +18,6 @@ RUN npm run build -- --configuration production
 
 # Serve built app with nginx
 FROM nginx:alpine
-COPY --from=build /app/dist/<your-app-name> /usr/share/nginx/html
+COPY --from=build /app/dist/my-cicd-test /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
