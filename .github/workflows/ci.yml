@@ -8,7 +8,10 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{matrix.os}}
+    strategy: 
+      matrix:
+      os: [ubuntu-latest, window-latest, macOS-latest]
 
     steps:
       # Checkout the code
@@ -24,3 +27,7 @@ jobs:
 
       # Build Angular project in production mode
       - run: npm run build -- --configuration production
+
+  publish:
+
+      needs: build
